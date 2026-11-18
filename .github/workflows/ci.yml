@@ -2,7 +2,7 @@ name: IRMS CI
 on:
   workflow_dispatch:
   push:
-    branches: [main, feature/complete-irms-modules]
+    branches: [main, feature/complete-irms-modules, hardening/complete-irms-security]
   pull_request:
     branches: [main]
 jobs:
