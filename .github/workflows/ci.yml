@@ -1,5 +1,6 @@
 name: IRMS CI
 on:
+  workflow_dispatch:
   push:
     branches: [main, feature/complete-irms-modules]
   pull_request:
