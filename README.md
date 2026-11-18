@@ -35,7 +35,7 @@ A full-stack incident response workspace built with React + Vite, Node.js + Expr
    Set `MONGODB_URI`, `CLIENT_ORIGIN`, and a unique random `JWT_SECRET` of at least 32 characters. Keep `backend/.env` private.
 3. Provision the first administrator (password must be at least 12 characters):
    ```bash
-   npm run create-admin -- "IRMS Administrator" admin@example.com "Use-A-Long-Unique-Password!"
+   npm run create-admin -w backend -- "IRMS Administrator" admin@example.com "Use-A-Long-Unique-Password!"
    ```
 4. Start the frontend and API:
    ```bash
