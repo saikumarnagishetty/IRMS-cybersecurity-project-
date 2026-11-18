@@ -15,14 +15,14 @@ export function detectEvidenceMime(buffer) {
   } catch {
     return null;
   }
-  if (text.includes("\\0")) return null;
+  if (text.includes("\0")) return null;
   const trimmed = text.trim();
   if (!trimmed) return "text/plain";
   try {
     JSON.parse(trimmed);
     return "application/json";
   } catch {
-    return /^[\\t\\n\\r\\x20-\\x7e\\u00a0-\\uffff]*$/.test(text) ? "text/plain" : null;
+    return /^[\t\n\r\x20-\x7e\u00a0-\uffff]*$/.test(text) ? "text/plain" : null;
   }
 }
 
