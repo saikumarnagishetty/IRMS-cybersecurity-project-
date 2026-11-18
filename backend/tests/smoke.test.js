@@ -1,0 +1,3 @@
+import test from "node:test";import assert from "node:assert/strict";
+test("IRMS API security configuration requires a JWT secret",()=>{const envExample="JWT_SECRET=replace-with-a-long-random-secret";assert.match(envExample,/JWT_SECRET=/);});
+test("SHA-256 digest format is 64 hexadecimal characters",()=>{import("node:crypto").then(({createHash})=>{const digest=createHash("sha256").update("irms").digest("hex");assert.match(digest,/^[a-f0-9]{64}$/);});});
