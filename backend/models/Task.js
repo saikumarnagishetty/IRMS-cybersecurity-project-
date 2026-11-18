@@ -1,0 +1,3 @@
+import mongoose from "mongoose";
+const schema=new mongoose.Schema({title:{type:String,required:true,trim:true,maxlength:160},description:{type:String,default:"",maxlength:3000},incident:{type:mongoose.Schema.Types.ObjectId,ref:"Incident",required:true,index:true},assignedTo:{type:mongoose.Schema.Types.ObjectId,ref:"User",default:null},createdBy:{type:mongoose.Schema.Types.ObjectId,ref:"User",required:true},status:{type:String,enum:["Open","In Progress","Blocked","Completed","Cancelled"],default:"Open"},priority:{type:String,enum:["Critical","High","Medium","Low"],default:"Medium"},dueAt:Date,completedAt:Date},{timestamps:true});
+export default mongoose.model("Task",schema);

@@ -1,0 +1,3 @@
+import mongoose from "mongoose";
+const schema=new mongoose.Schema({incident:{type:mongoose.Schema.Types.ObjectId,ref:"Incident",required:true,index:true},originalName:{type:String,required:true},storedName:{type:String,required:true,unique:true},mimeType:{type:String,required:true},size:{type:Number,required:true},sha256:{type:String,required:true,index:true},uploadedBy:{type:mongoose.Schema.Types.ObjectId,ref:"User",required:true},custody:[{action:String,actor:{type:mongoose.Schema.Types.ObjectId,ref:"User"},at:{type:Date,default:Date.now},note:String,sha256:String}]},{timestamps:true});
+export default mongoose.model("Evidence",schema);

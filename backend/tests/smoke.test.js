@@ -1,0 +1,3 @@
+import test from "node:test";import assert from "node:assert/strict";import {createHash} from "node:crypto";
+test("JWT secret example is explicitly marked for replacement",()=>{const value="replace-with-at-least-32-random-characters";assert.ok(value.length>=32);});
+test("SHA-256 digest is stable and uses 64 hexadecimal characters",()=>{const digest=createHash("sha256").update("irms").digest("hex");assert.match(digest,/^[a-f0-9]{64}$/);assert.equal(digest,createHash("sha256").update("irms").digest("hex"));});

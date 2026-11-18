@@ -1,0 +1,3 @@
+import mongoose from "mongoose";
+const schema=new mongoose.Schema({incident:{type:mongoose.Schema.Types.ObjectId,ref:"Incident",required:true,index:true},actor:{type:mongoose.Schema.Types.ObjectId,ref:"User",default:null},actorName:String,action:{type:String,required:true},message:{type:String,default:""},changes:{type:mongoose.Schema.Types.Mixed,default:{}}},{timestamps:true});
+export default mongoose.model("Activity",schema);

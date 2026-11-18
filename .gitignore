@@ -5,3 +5,6 @@ dist/
 !.env.example
 backend/uploads/
 .DS_Store
+
+backend/storage/
+backend/uploads/
