@@ -32,7 +32,7 @@ app.use(helmet({crossOriginResourcePolicy:{policy:"cross-origin"}}));
 app.use(cors({origin,credentials:false}));
 app.use(express.json({limit:"1mb"}));
 app.use("/api/auth",rateLimit({windowMs:15*60*1000,limit:20,standardHeaders:true,legacyHeaders:false}));
-app.use("/api",authenticate);
+app.use("/api",(req,res,next)=>req.path==="/auth/login"?next():authenticate(req,res,next));
 app.use((req,res,next)=>{req.audit=async(action,resource,resourceId,details={})=>{try{await AuditLog.create({actor:req.user?.id,actorEmail:req.user?.email,action,resource,resourceId:String(resourceId||""),details,ip:req.ip,userAgent:req.get("user-agent")});}catch(e){console.error("Audit write failed",e.message);}};next();});
 const notify=async(recipients,title,message,type="info",link="")=>{const ids=[...new Set(recipients.filter(Boolean).map(String))];if(ids.length)await Notification.insertMany(ids.map(recipient=>({recipient,title,message,type,link})));};
 const activity=async(incident,req,action,message,changes={})=>Activity.create({incident,actor:req.user.id,actorName:req.user.name||req.user.email,action,message,changes});
