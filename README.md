@@ -30,7 +30,7 @@ A full-stack incident response workspace built with React + Vite, Node.js + Expr
    ```
 2. Configure the backend:
    ```bash
-   cp backend/.env.example backend/.env
+   copy backend\\.env.example backend\\.env (Windows CMD)\n   # macOS/Linux: cp backend/.env.example backend/.env
    ```
    Set `MONGODB_URI`, `CLIENT_ORIGIN`, and a unique random `JWT_SECRET` of at least 32 characters. Keep `backend/.env` private.
 3. Provision the first administrator (password must be at least 12 characters):
@@ -45,7 +45,7 @@ A full-stack incident response workspace built with React + Vite, Node.js + Expr
 
 Optional frontend API override: copy `frontend/.env.example` to `frontend/.env` and set `VITE_API_URL`.
 
-## Tests and build
+## Docker deployment\n\nFor a local container deployment with MongoDB, API, frontend, persistent database volume and persistent evidence volume:\n\n1. Create a root `.env` file containing `JWT_SECRET` with at least 32 random characters.\n2. Run `docker compose up --build -d`.\n3. Open http://localhost:8080. The frontend Nginx container reverse-proxies `/api` and Socket.IO to the backend.\n4. Provision the first administrator from the running API container:\n   `docker compose exec api node scripts/create-admin.js "IRMS Administrator" admin@example.com "Use-A-Long-Unique-Password!"`\n5. View service logs with `docker compose logs -f api web`.\n\nThis Compose file is a convenient single-host baseline, not a hardened public production deployment. For internet exposure, put the stack behind TLS, use MongoDB authentication and network isolation, restrict inbound ports, set the exact public `CLIENT_ORIGIN`, build the frontend with the public API/reverse-proxy origin, use managed secrets, and configure encrypted off-host backups.\n\n## Tests and build
 
 ```bash
 npm test
